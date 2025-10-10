@@ -1,0 +1,227 @@
+.admin-panel {
+  width: 100%;
+}
+
+.admin-panel-header {
+  margin-bottom: var(--space-5);
+}
+
+.admin-panel-new-button {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-brand);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.admin-panel-new-button:hover {
+  opacity: 0.85;
+}
+
+.admin-panel-loading {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* Form styles */
+.admin-panel-form {
+  background-color: var(--color-surface);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow);
+}
+
+.admin-panel-form-row {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.admin-panel-form-row label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.admin-panel-form-required {
+  color: var(--color-error);
+}
+
+.admin-panel-form input,
+.admin-panel-form select,
+.admin-panel-form textarea {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.admin-panel-form input:focus,
+.admin-panel-form select:focus,
+.admin-panel-form textarea:focus {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 0;
+  border-color: var(--color-brand);
+}
+
+.admin-panel-form textarea {
+  resize: vertical;
+  font-family: var(--font-sans);
+}
+
+.admin-panel-form-submit {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-brand);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.admin-panel-form-submit:hover {
+  opacity: 0.85;
+}
+
+/* Table styles */
+.admin-panel-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.admin-panel-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-bg);
+}
+
+.admin-panel-table thead {
+  background-color: var(--color-surface);
+}
+
+.admin-panel-table th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.admin-panel-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.admin-panel-table tbody tr:hover {
+  background-color: var(--color-surface);
+}
+
+.admin-panel-table-empty {
+  text-align: center;
+  color: var(--color-muted);
+  padding: var(--space-6);
+}
+
+.admin-panel-table input,
+.admin-panel-table select,
+.admin-panel-table textarea {
+  width: 100%;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  background-color: var(--color-bg);
+}
+
+.admin-panel-table textarea {
+  resize: vertical;
+  font-family: var(--font-sans);
+}
+
+/* Status badges */
+.admin-panel-status-offen {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background-color: #fef3c7;
+  color: #92400e;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.admin-panel-status-fix {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background-color: #d1fae5;
+  color: #065f46;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Action buttons */
+.admin-panel-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.admin-panel-action-button {
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-brand);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.admin-panel-action-button:hover {
+  opacity: 0.85;
+}
+
+.admin-panel-action-button-delete {
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-error);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.admin-panel-action-button-delete:hover {
+  opacity: 0.85;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-panel-form-row {
+    flex-direction: column;
+  }
+
+  .admin-panel-table-wrapper {
+    overflow-x: scroll;
+  }
+
+  .admin-panel-table {
+    min-width: 800px;
+  }
+}
