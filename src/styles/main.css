@@ -77,8 +77,19 @@ select {
   font: inherit;
 }
 
-button {
+button, a {
+  all: unset;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+}
+
+button, a:hover {
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 /* Focus visible styles */

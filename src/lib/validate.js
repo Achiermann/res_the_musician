@@ -16,6 +16,9 @@ export const CreateGigPayload = z.object({
   location: z.string().max(200, 'Location too long').optional().default(''),
   comments: z.string().optional().default(''),
   status: z.enum(['offen', 'fix']).optional().default('offen'),
+  start: z.string().optional().default(''),
+  end: z.string().optional().default(''),
+  url: z.string().optional().default(''),
 });
 
 /**

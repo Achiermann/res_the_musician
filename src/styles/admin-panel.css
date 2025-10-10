@@ -6,19 +6,6 @@
   margin-bottom: var(--space-5);
 }
 
-.admin-panel-new-button {
-  padding: var(--space-3) var(--space-5);
-  background-color: var(--color-brand);
-  color: var(--color-bg);
-  border: none;
-  border-radius: var(--radius);
-  font-weight: 600;
-  transition: opacity 0.2s ease;
-}
-
-.admin-panel-new-button:hover {
-  opacity: 0.85;
-}
 
 .admin-panel-loading {
   padding: var(--space-6);
@@ -79,19 +66,6 @@
   font-family: var(--font-sans);
 }
 
-.admin-panel-form-submit {
-  padding: var(--space-3) var(--space-5);
-  background-color: var(--color-brand);
-  color: var(--color-bg);
-  border: none;
-  border-radius: var(--radius);
-  font-weight: 600;
-  transition: opacity 0.2s ease;
-}
-
-.admin-panel-form-submit:hover {
-  opacity: 0.85;
-}
 
 /* Table styles */
 .admin-panel-table-wrapper {
@@ -183,32 +157,19 @@
 
 .admin-panel-action-button {
   padding: var(--space-2) var(--space-3);
-  background-color: var(--color-brand);
-  color: var(--color-bg);
-  border: none;
-  border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 500;
-  transition: opacity 0.2s ease;
-}
-
-.admin-panel-action-button:hover {
-  opacity: 0.85;
 }
 
 .admin-panel-action-button-delete {
   padding: var(--space-2) var(--space-3);
-  background-color: var(--color-error);
-  color: var(--color-bg);
-  border: none;
-  border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 500;
-  transition: opacity 0.2s ease;
+  color: var(--color-error);
 }
 
-.admin-panel-action-button-delete:hover {
-  opacity: 0.85;
+.admin-back-button{
+  margin: 10px;
 }
 
 /* Responsive adjustments */

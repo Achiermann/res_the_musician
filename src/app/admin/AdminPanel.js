@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useGigsStore } from '@/stores/useGigsStore';
 import '../../styles/admin-panel.css';
 
 export default function AdminPanel() {
   /*** VARIABLES ***/
-  const [gigs, setGigs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { gigs, loading, fetchGigs, addGig, updateGig, deleteGig } = useGigsStore();
   const [showNewGigForm, setShowNewGigForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
@@ -17,27 +17,12 @@ export default function AdminPanel() {
     location: '',
     comments: '',
     status: 'offen',
-    start: '',
-    end: '',
+    start: '18:00',
+    end: '23:30',
     url: '',
   });
 
   /*** FUNCTIONS/HANDLERS ***/
-  async function fetchGigs() {
-    try {
-      const res = await fetch('/api/gigs');
-      if (!res.ok) {
-        throw new Error('Failed to fetch gigs');
-      }
-      const data = await res.json();
-      setGigs(data.items || []);
-    } catch (error) {
-      toast.error('Failed to load gigs');
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   async function handleCreateGig(e) {
     e.preventDefault();
@@ -58,6 +43,8 @@ export default function AdminPanel() {
         throw new Error('Failed to create gig');
       }
 
+      const newGig = await res.json();
+      addGig(newGig);
       toast.success('Gig created successfully');
       setShowNewGigForm(false);
       setFormData({
@@ -67,11 +54,10 @@ export default function AdminPanel() {
         location: '',
         comments: '',
         status: 'offen',
-        start: '',
-        end: '',
+        start: '18:00',
+        end: '23:30',
         url: '',
       });
-      fetchGigs();
     } catch (error) {
       toast.error('Failed to create gig');
       console.error(error);
@@ -90,9 +76,10 @@ export default function AdminPanel() {
         throw new Error('Failed to update gig');
       }
 
+      const updated = await res.json();
+      updateGig(id, updated);
       toast.success('Gig updated successfully');
       setEditingId(null);
-      fetchGigs();
     } catch (error) {
       toast.error('Failed to update gig');
       console.error(error);
@@ -113,8 +100,8 @@ export default function AdminPanel() {
         throw new Error('Failed to delete gig');
       }
 
+      deleteGig(id);
       toast.success('Gig deleted successfully');
-      fetchGigs();
     } catch (error) {
       toast.error('Failed to delete gig');
       console.error(error);
@@ -164,97 +151,24 @@ export default function AdminPanel() {
       {showNewGigForm && (
         <form className="admin-panel-form" onSubmit={handleCreateGig}>
           <div className="admin-panel-form-row">
-            <label>
-              Act <span className="admin-panel-form-required">*</span>
-              <input
-                type="text"
-                name="act"
-                value={formData.act}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Date <span className="admin-panel-form-required">*</span>
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
+            <label> Act <span className="admin-panel-form-required">*</span> <input type="text" name="act" value={formData.act} onChange={handleInputChange} required /> </label>
+            <label> Date <span className="admin-panel-form-required">*</span> <input type="date" name="date" value={formData.date} onChange={handleInputChange} required /> </label>
           </div>
           <div className="admin-panel-form-row">
-            <label>
-              Venue
-              <input
-                type="text"
-                name="venue"
-                value={formData.venue}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Location
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-              />
-            </label>
+            <label> Venue <input type="text" name="venue" value={formData.venue} onChange={handleInputChange} /> </label>
+            <label> Location <input type="text" name="location" value={formData.location} onChange={handleInputChange} /> </label>
           </div>
           <div className="admin-panel-form-row">
-            <label>
-              Start Time
-              <input
-                type="time"
-                name="start"
-                value={formData.start}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              End Time
-              <input
-                type="time"
-                name="end"
-                value={formData.end}
-                onChange={handleInputChange}
-              />
-            </label>
+            <label> Start Time <input type="time" name="start" value={formData.start} onChange={handleInputChange} /> </label>
+            <label> End Time <input type="time" name="end" value={formData.end} onChange={handleInputChange} /> </label>
           </div>
           <div className="admin-panel-form-row">
-            <label>
-              URL
-              <input
-                type="url"
-                name="url"
-                value={formData.url}
-                onChange={handleInputChange}
-              />
-            </label>
+            <label> URL <input type="url" name="url" value={formData.url} onChange={handleInputChange} /> </label>
           </div>
           <div className="admin-panel-form-row">
-            <label>
-              Status
-              <select name="status" value={formData.status} onChange={handleInputChange}>
-                <option value="offen">Offen</option>
-                <option value="fix">Fix</option>
-              </select>
-            </label>
-          </div>
+            <label> Status <select name="status" value={formData.status} onChange={handleInputChange}> <option value="offen">Offen</option> <option value="fix">Fix</option> </select> </label> </div>
           <div className="admin-panel-form-row">
-            <label>
-              Comments
-              <textarea
-                name="comments"
-                value={formData.comments}
-                onChange={handleInputChange}
-                rows="3"
-              />
-            </label>
+            <label> Comments <textarea name="comments" value={formData.comments} onChange={handleInputChange} rows="3" /> </label>
           </div>
           <button type="submit" className="admin-panel-form-submit">
             Create Gig
@@ -362,7 +276,7 @@ export default function AdminPanel() {
                       onBlur={(e) => handleFieldUpdate(gig.id, 'url', e.target.value)}
                     />
                   ) : (
-                    gig.url && <a href={gig.url} target="_blank" rel="noopener noreferrer">{gig.url}</a>
+                    gig.url ? <a href={gig.url} target="_blank" rel="noopener noreferrer">{gig.url}</a> : ''
                   )}
                 </td>
                 <td>

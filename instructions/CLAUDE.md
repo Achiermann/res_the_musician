@@ -72,6 +72,7 @@ Next is pre installed in this project.
 - **No CSS Modules** (no `.module.css` files). Use plain CSS only.
 - Use regular className strings, not styles objects (e.g., `className="gigs-list"` not `className={styles['gigs-list']}`).
 - **Do NOT** define styling in JSX ever.
+- Buttons / forms should be styled in main.css and all children should inherit the styling. Don`t style them individually.
 
 ## Linting & formatting (non-negotiable)
 

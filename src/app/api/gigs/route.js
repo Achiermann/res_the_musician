@@ -28,7 +28,7 @@ export async function GET(req) {
 
     let query = supabase
       .from('concerts')
-      .select('id,act,date,venue,location,comments,status,created_at', { count: 'exact' })
+      .select('id,act,date,venue,location,comments,status,created_at,start,end,url', { count: 'exact' })
       .order('id', { ascending: true })
       .order('date', { ascending: true })
       .order('act', { ascending: true });
