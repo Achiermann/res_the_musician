@@ -108,6 +108,28 @@ export default function AdminPanel() {
     }
   }
 
+  async function handleDuplicateGig(gig) {
+    try {
+      const { id, ...gigData } = gig;
+      const res = await fetch('/api/gigs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(gigData),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to duplicate gig');
+      }
+
+      const newGig = await res.json();
+      addGig(newGig);
+      toast.success('Gig duplicated successfully');
+    } catch (error) {
+      toast.error('Failed to duplicate gig');
+      console.error(error);
+    }
+  }
+
   function handleInputChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -130,7 +152,7 @@ export default function AdminPanel() {
 
   useEffect(() => {
     fetchGigs();
-  }, []);
+  }, [fetchGigs]);
 
   /*** RENDER ***/
   if (loading) {
@@ -322,6 +344,12 @@ export default function AdminPanel() {
                         Edit
                       </button>
                     )}
+                    <button
+                      className="admin-panel-action-button"
+                      onClick={() => handleDuplicateGig(gig)}
+                    >
+                      Duplicate
+                    </button>
                     <button
                       className="admin-panel-action-button-delete"
                       onClick={() => handleDeleteGig(gig.id)}

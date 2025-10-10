@@ -6,10 +6,11 @@ export default function Home() {
     <div className="page">
       <header className="header">
         <div className="container">
-          <h1 className="title">Gigs</h1>
         </div>
       </header>
       <main className="main">
+          <img src="/foto-achi.jpg" alt="Logo" className="foto-achi" />
+          <h1 className="title">Gigs</h1>
         <div className="container">
           <GigsList />
         </div>

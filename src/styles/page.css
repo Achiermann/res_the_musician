@@ -5,8 +5,7 @@
 }
 
 .header {
-  padding: var(--space-8) 0 var(--space-6) 0;
-  border-bottom: 2px solid var(--color-border);
+  /* padding: var(--space-8) 0 var(--space-6) 0; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,8 +25,18 @@
 }
 
 .main {
-  flex: 1;
-  padding: var(--space-8) 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* flex: 1; */
+  /* padding: var(--space-8) 0; */
+}
+
+.foto-achi {
+  margin: 50px 0px 100px 0px;
+  width: 300px;
 }
 
 .description {
