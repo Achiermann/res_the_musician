@@ -14,15 +14,22 @@
 .container{
   display: flex;
   justify-content: center;
+  align-items: center;
   min-width: 100%;
   margin-top: 20px;
 }
 
-.title {
+.nav-option-btn {
+  all: unset;
+  margin: 0 10px 0 10px;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-brand);
   letter-spacing: -0.02em;
+}
+
+.nav-option-btn:hover {
+  text-decoration: underline;
 }
 
 .main {
@@ -37,7 +44,6 @@
 
 .foto-achi {
   margin: 50px 0px 100px 0px;
-  width: 300px;
 }
 
 .description {
@@ -72,4 +78,8 @@
   background-color: var(--color-surface);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
+}
+
+.footer {
+  margin-top: 100px;
 }

@@ -2,7 +2,7 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-in the AdminPanel.js component, create the option to dublicate an event.
+Edit workList.js so all work-data gets displayed, without havin to click on them, no more hover behaviour (ONLY IN THIS COMPONENT) and no more acordeon style, just a plain portfolio. 
 
 <!-- .2 Disclaimer -->
 

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useGigsStore } from '@/stores/useGigsStore';
-import '../styles/gigs-list.css';
+import '../../styles/gigs-list.css';
 
 export default function GigsList() {
   /*** VARIABLES ***/

@@ -34,11 +34,5 @@
 
 .gigs-list-loading,
 .gigs-list-empty {
-  padding: var(--space-8);
   text-align: center;
-  color: var(--color-text);
-  font-size: 1.125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
