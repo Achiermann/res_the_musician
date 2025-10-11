@@ -2,14 +2,12 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-In CSS in the end of every .css file write a "mobile display" template as the following
-"
-/* .1.        MOBILE                                                                             */
+ONLY FOR MOBILE DISPLAY make gigs-list-item-act, gigs-list-item-venue and gigs-list-item-location being displayed on one line, so next to each other rather then stacked.
+so it should be:
 
-@media (max-width: 768px){}
-"
-
-Then in "@media (max-width: 768px){}" change all styling so its displayed well in a mobile screen. 
+"INSIDE GIGSLIST-ITEM
+<gigs-list-item-date> <linebreak>
+// ALL ON ONE LINE <gigs-list-item-act> <gigs-list-item-venue> <gigs-list-item-location>"
 
 <!-- .2 Disclaimer -->
 

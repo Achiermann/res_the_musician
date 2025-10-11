@@ -32,13 +32,22 @@ export default function GigsList() {
           <div className="gigs-list-item-date">
             {new Date(gig.date).toLocaleDateString().replaceAll('/', '.')}
           </div>
-          <div className="gigs-list-item-act">{gig.act}</div>
+          <div className="gigs-list-item-act gigs-list-item-desktop">{gig.act}</div>
           {gig.venue && (
-            <div className="gigs-list-item-venue">{gig.venue}</div>
+            <div className="gigs-list-item-venue gigs-list-item-desktop">{gig.venue}</div>
           )}
           {gig.location && (
-            <div className="gigs-list-item-location">{gig.location}</div>
+            <div className="gigs-list-item-location gigs-list-item-desktop">{gig.location}</div>
           )}
+          <div className="gigs-list-item-info-row gigs-list-item-mobile">
+            <div className="gigs-list-item-act">{gig.act}</div>
+            {gig.venue && (
+              <div className="gigs-list-item-venue">{gig.venue}</div>
+            )}
+            {gig.location && (
+              <div className="gigs-list-item-location">{gig.location}</div>
+            )}
+          </div>
         </li>
       ))}
     </ul>
