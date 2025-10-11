@@ -7,7 +7,9 @@ import '../../styles/gigs-list.css';
 export default function GigsList() {
   /*** VARIABLES ***/
   const { gigs, loading, fetchGigs } = useGigsStore();
-  const fixedGigs = gigs.filter((gig) => gig.status === 'fix');
+  const fixedSortedGigs = gigs
+    .filter((gig) => gig.status === 'fix')
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   /*** FUNCTIONS/HANDLERS ***/
   useEffect(() => {
@@ -19,13 +21,13 @@ export default function GigsList() {
     return <div className="gigs-list-loading">Loading...</div>;
   }
 
-  if (fixedGigs.length === 0) {
+  if (fixedSortedGigs.length === 0) {
     return <div className="gigs-list-empty">No gigs scheduled yet.</div>;
   }
 
   return (
     <ul className="gigs-list">
-      {fixedGigs.map((gig) => (
+      {fixedSortedGigs.map((gig) => (
         <li key={gig.id} className="gigs-list-item">
           <div className="gigs-list-item-date">
             {new Date(gig.date).toLocaleDateString().replaceAll('/', '.')}

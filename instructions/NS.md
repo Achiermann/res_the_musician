@@ -2,7 +2,14 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-Edit workList.js so all work-data gets displayed, without havin to click on them, no more hover behaviour (ONLY IN THIS COMPONENT) and no more acordeon style, just a plain portfolio. 
+In CSS in the end of every .css file write a "mobile display" template as the following
+"
+/* .1.        MOBILE                                                                             */
+
+@media (max-width: 768px){}
+"
+
+Then in "@media (max-width: 768px){}" change all styling so its displayed well in a mobile screen. 
 
 <!-- .2 Disclaimer -->
 

@@ -119,3 +119,20 @@ button, a:hover {
   padding-left: var(--space-4);
   padding-right: var(--space-4);
 }
+
+/* .1.        MOBILE                                                                             */
+
+@media (max-width: 768px){
+  .container {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  button, a {
+    padding: var(--space-2) var(--space-3);
+  }
+}

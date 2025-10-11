@@ -83,3 +83,34 @@
 .footer {
   margin-top: 100px;
 }
+
+/* .1.        MOBILE                                                                             */
+
+@media (max-width: 768px){
+  .header {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .nav-option-btn {
+    font-size: 1rem;
+    margin: 0 var(--space-2);
+  }
+
+  .main {
+    padding: var(--space-4);
+  }
+
+  .foto-achi {
+    margin: var(--space-6) 0;
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .footer {
+    margin-top: var(--space-7);
+  }
+}

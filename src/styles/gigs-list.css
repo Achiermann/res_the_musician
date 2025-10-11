@@ -36,3 +36,29 @@
 .gigs-list-empty {
   text-align: center;
 }
+
+/* .1.        MOBILE                                                                             */
+
+@media (max-width: 768px){
+  .gigs-list {
+    width: 100%;
+    padding: 0 var(--space-2);
+  }
+
+  .gigs-list-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+
+  .gigs-list-item-date,
+  .gigs-list-item-act,
+  .gigs-list-item-venue,
+  .gigs-list-item-location {
+    font-size: 0.875rem;
+  }
+
+  .gigs-list-item-date {
+    font-size: 1rem;
+  }
+}
