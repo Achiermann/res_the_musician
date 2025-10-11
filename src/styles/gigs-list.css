@@ -32,6 +32,12 @@
   font-weight: 700;
 }
 
+.gigs-list-item-comments {
+  grid-column: 1 / -1;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
 .gigs-list-item-mobile {
   display: none;
 }

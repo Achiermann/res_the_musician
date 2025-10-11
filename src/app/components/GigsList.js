@@ -5,6 +5,7 @@ import { useGigsStore } from '@/stores/useGigsStore';
 import '../../styles/gigs-list.css';
 
 export default function GigsList() {
+
   /*** VARIABLES ***/
   const { gigs, loading, fetchGigs } = useGigsStore();
   const fixedSortedGigs = gigs
@@ -48,6 +49,9 @@ export default function GigsList() {
               <div className="gigs-list-item-location">{gig.location}</div>
             )}
           </div>
+          {gig.comments && (
+            <div className="gigs-list-item-comments">{gig.comments}</div>
+          )}
         </li>
       ))}
     </ul>

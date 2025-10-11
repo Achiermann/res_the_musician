@@ -2,12 +2,7 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-ONLY FOR MOBILE DISPLAY make gigs-list-item-act, gigs-list-item-venue and gigs-list-item-location being displayed on one line, so next to each other rather then stacked.
-so it should be:
-
-"INSIDE GIGSLIST-ITEM
-<gigs-list-item-date> <linebreak>
-// ALL ON ONE LINE <gigs-list-item-act> <gigs-list-item-venue> <gigs-list-item-location>"
+now gigs-list-item-comments should take up the whole with of gigslist-item.
 
 <!-- .2 Disclaimer -->
 
