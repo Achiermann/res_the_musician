@@ -1,8 +1,20 @@
-// next.config.js  (delete any next.config.mjs)
- /** @type {import('next').NextConfig} */
+// next.config.js
+const path = require('node:path');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+});
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {
-    root: __dirname,  // <- force root to this project folder
+    root: __dirname,
   },
 };
-module.exports = nextConfig;
+
+module.exports = withPWA(nextConfig);
+
+
+	

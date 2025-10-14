@@ -1,8 +1,13 @@
-'use client';
-
 import '../styles/main.css';
 import { Toaster } from 'react-hot-toast';
 import { Cormorant_Garamond } from 'next/font/google';
+
+export const metadata = {
+    title: { default: "Gigs", template: "%s | Gigs" },
+    description: "Add gigs",
+    themeColor: "#ffffff",
+    manifest: "/manifest.json",
+};
 
 const cormorantGaramond = Cormorant_Garamond({
   weight: ['400', '700'],

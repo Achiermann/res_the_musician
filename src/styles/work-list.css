@@ -1,15 +1,52 @@
 .work-list {
   list-style: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;;
   gap: 0;
-  width: 50%;
+  width: 90%;
+  min-height: 300px;
+}
+
+.work-list-and-display-wrapper {
+    list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;;
+  gap: 0;
+  width: 90%;
+  min-height: 300px;
+}
+
+.work-display{
+width: 100%;
+flex: 2 1 0%;
+flex-shrink: 0;
+justify-content: center !important;
+align-items: center !important;
+}
+
+.work-display *{
+  margin: 9px auto 9px auto;
+}
+
+.work-list-sidebar{
+display: flex;
+flex: 1 1 0%;
+flex-direction: column;
+width: 100%;
+padding-right: 60px;
+}
+
+.sidebar-item-artist{
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 
 .work-list-item {
    display: flex;
    flex-direction: column;
-   margin: 10px 0 10px 0;
+   margin: 3px 0 3px 0;
   box-shadow: var(--shadow-sm);
   transition: background-color 0.15s ease;
    border-bottom: 1px solid black;
@@ -20,7 +57,7 @@
 }
 
 .work-list-item-title{
-  font-size: 2rem;
+  font-size: 1rem;
   color: var(--color-text);
   margin-bottom: 0;
   font-weight: 400;
@@ -84,6 +121,10 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.spotify-embed * {
+  background-color: red !important;
 }
 
 /* .1.        MOBILE                                                                             */

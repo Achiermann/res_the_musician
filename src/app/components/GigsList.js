@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import { useGigsStore } from '@/stores/useGigsStore';
 import '../../styles/gigs-list.css';
 
