@@ -10,7 +10,8 @@ export default function ClientWrapper() {
 
   // .1 States
   const [display, setDisplay] = useState('live');
-  
+  const [liveView, setLiveView] = useState('upcoming');
+
   return (
     <div className="page">
       <header className="header">
@@ -22,9 +23,17 @@ export default function ClientWrapper() {
         <div className="nav-bar">
         <button className="nav-option-btn" style={display === 'live' ? {textDecoration: 'underline'} : {}} onClick={() => setDisplay('live')}>live</button>
         <button className="nav-option-btn" style={display === 'work' ? {textDecoration: 'underline'} : {}} onClick={() => setDisplay('work')}>work</button>
-        </div> 
+        </div>
         <div className="container">
-          {display === 'live' && <GigsList />}
+          {display === 'live' && (
+            <>
+              <div className="live-view-toggle">
+                <h2 className="live-view-toggle-option" style={liveView === 'upcoming' ? {textDecoration: 'underline', cursor: 'pointer'} : {cursor: 'pointer'}} onClick={() => setLiveView('upcoming')}>upcoming</h2>
+                <h2 className="live-view-toggle-option" style={liveView === 'past' ? {textDecoration: 'underline', cursor: 'pointer'} : {cursor: 'pointer'}} onClick={() => setLiveView('past')}>past</h2>
+              </div>
+              <GigsList view={liveView} />
+            </>
+          )}
           {display === 'work' && <WorkList />}
         </div>
       </main>

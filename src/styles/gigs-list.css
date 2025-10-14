@@ -1,3 +1,13 @@
+.live-view-toggle{
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.live-view-toggle-option{
+  font-size: 1.3rem;
+}
+
 .gigs-list {
   list-style: none;
   display: flex;
@@ -12,15 +22,6 @@
   margin: 10px 0 10px 0;
   box-shadow: var(--shadow-sm);
   transition: background-color 0.15s ease;
-}
-
-.gigs-list-item.past-show{
-  display: grid;
-  grid-template-columns: 1.5fr 2.6fr 3fr 1.5fr;
-  margin: 10px 0 10px 0;
-  box-shadow: var(--shadow-sm);
-  transition: background-color 0.15s ease;
-  width: 100%;
 }
 
 .gigs-list-item-date, .gigs-list-item-act, .gigs-list-item-venue, .gigs-list-item-location {
@@ -60,15 +61,24 @@
   margin-top: 40px;
 }
 
+
+/* .2 PAST SHOWS */
+
 .past-gigs-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 0;
-  width: 60%;
   margin-top: 40px;
+  width: 500px;
+}
+
+.gigs-list-item.past-show{
+  display: grid;
+  /* grid-template-columns: 1.5fr 2.6fr 3fr 1.5fr; */
+  margin: 10px 0 10px 0;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.15s ease;
 }
 
 /* .1.        MOBILE                                                                             */
