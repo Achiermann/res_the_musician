@@ -14,6 +14,15 @@
   transition: background-color 0.15s ease;
 }
 
+.gigs-list-item.past-show{
+  display: grid;
+  grid-template-columns: 1.5fr 2.6fr 3fr 1.5fr;
+  margin: 10px 0 10px 0;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.15s ease;
+  width: 100%;
+}
+
 .gigs-list-item-date, .gigs-list-item-act, .gigs-list-item-venue, .gigs-list-item-location {
   font-size: 1rem;
   color: var(--color-text);
@@ -45,6 +54,21 @@
 .gigs-list-loading,
 .gigs-list-empty {
   text-align: center;
+}
+
+.past-concerts-title{
+  margin-top: 40px;
+}
+
+.past-gigs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 60%;
+  margin-top: 40px;
 }
 
 /* .1.        MOBILE                                                                             */

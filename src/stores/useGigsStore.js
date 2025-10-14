@@ -16,7 +16,7 @@ export const useGigsStore = create((set, get) => ({
   fetchGigs: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await fetch('/api/gigs');
+      const res = await fetch('/api/gigs?pageSize=1000');
       if (!res.ok) {
         throw new Error('Failed to fetch gigs');
       }
