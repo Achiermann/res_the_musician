@@ -34,7 +34,22 @@
   /* Typography - Cormorant Garamond */
   --font-sans: 'Cormorant Garamond', serif;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', monospace;
+
+   /* iOS safe area env() fallbacks */
+  --safe-top: env(safe-area-inset-top);
+  --safe-right: env(safe-area-inset-right);
+  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-left: env(safe-area-inset-left);
+
 }
+
+@supports (padding: max(0px)) {
+  .app-shell {
+    padding-top: max(0px, var(--safe-top));
+    padding-bottom: max(0px, var(--safe-bottom));
+    padding-left: max(0px, var(--safe-left));
+    padding-right: max(0px, var(--safe-right));
+  }}
 
 /* Element resets */
 *,
