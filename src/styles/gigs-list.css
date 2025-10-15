@@ -66,7 +66,9 @@
   flex-direction: column;
   gap: 0;
   margin-top: 40px;
-  width: 40%;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
 }
 
 .past-concerts-title{
