@@ -32,7 +32,7 @@ export async function GET(req) {
       const eventStart = [Y, M, D, startHour, startMin];
 
       const event = {
-        title: `${gig.status === "fix" ? '' : '(offen)'}${gig.act}${gig.location ? `, ${gig.location}` : ''}`.trim(),
+        title: `${gig.status === "fix" ? '' : '(offen) '}${gig.act}${gig.location ? `, ${gig.location}` : ''}`.trim(),
         description: gig.comments || '',
         location: [gig.venue, gig.location].filter(Boolean).join(', '),
         start: eventStart,
