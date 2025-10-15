@@ -33,6 +33,21 @@
   text-decoration: underline;
 }
 
+.work-sidebar-burger {
+  display: none;
+  position: absolute;
+  left: 0;
+
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 80%;
+}
+
 .main {
   padding: 20px;
   display: flex;
@@ -109,6 +124,7 @@
   .header {
     flex-direction: column;
     gap: var(--space-4);
+    height: 0px;
   }
 
   .nav-option-btn {
@@ -132,4 +148,37 @@
   .footer {
     margin-top: var(--space-7);
   }
+
+  .work-sidebar-burger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: var(--space-2);
+  }
+
+  .work-sidebar-burger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+
+  .work-sidebar-burger:hover span {
+    background-color: var(--color-brand);
+  }
+
+  .image-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 3px 0px 10px 0px;
+  width: 400px;
+  height: 600px;
+}
 }

@@ -137,12 +137,64 @@ padding-right: 60px;
     padding: 0 var(--space-2);
   }
 
+  .work-list-and-display-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+
+  .work-list-and-display-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .work-list-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    padding: var(--space-4);
+    padding-right: var(--space-4);
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: transform 0.3s ease;
+    z-index: 10;
+  }
+
+  .work-list-sidebar.hidden {
+    transform: translateX(-100%);
+  }
+
+  .work-list-sidebar.visible {
+    transform: translateX(0);
+  }
+
+  .work-display {
+    width: 100%;
+    padding: var(--space-4);
+    position: relative;
+  }
+
+  .work-display.hidden {
+    display: none;
+  }
+
+  .work-display.visible {
+    display: block;
+  }
+
   .work-list-item {
     margin: var(--space-3) 0;
+    cursor: pointer;
   }
 
   .work-list-item-title {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+  }
+
+  .work-list-item-title:hover {
+    color: var(--color-brand);
   }
 
   .work-list-item-subtitle {
@@ -166,5 +218,9 @@ padding-right: 60px;
   .work-list-empty {
     padding: var(--space-6);
     font-size: 1rem;
+  }
+
+  .sidebar-item-artist {
+    margin-top: var(--space-4);
   }
 }

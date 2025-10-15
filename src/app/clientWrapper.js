@@ -11,6 +11,12 @@ export default function ClientWrapper() {
   // .1 States
   const [display, setDisplay] = useState('live');
   const [liveView, setLiveView] = useState('upcoming');
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+
+  // .2 Handlers
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   return (
     <div className="page">
@@ -24,6 +30,13 @@ export default function ClientWrapper() {
           <Image src={"/frame.png"} width={400} height={570} alt="Logo" className="foto-frame" />
         </div>
         <div className="nav-bar">
+        {display === 'work' && (
+          <button className="work-sidebar-burger" onClick={toggleSidebar} aria-label="Toggle sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        )}
         <button className="nav-option-btn" style={display === 'live' ? {textDecoration: 'underline'} : {}} onClick={() => setDisplay('live')}>live</button>
         <button className="nav-option-btn" style={display === 'work' ? {textDecoration: 'underline'} : {}} onClick={() => setDisplay('work')}>work</button>
         </div>
@@ -37,7 +50,7 @@ export default function ClientWrapper() {
               <GigsList view={liveView} />
             </>
           )}
-          {display === 'work' && <WorkList />}
+          {display === 'work' && <WorkList isSidebarVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />}
         </div>
       </main>
       <footer className="footer"/>
