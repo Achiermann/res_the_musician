@@ -43,8 +43,26 @@
   /* padding: var(--space-8) 0; */
 }
 
-.foto-achi {
+.image-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   margin: 50px 0px 100px 0px;
+  width: 400px;
+  height: 600px;
+}
+
+.foto-achi {
+  position: relative;
+  z-index: 2;
+}
+
+.foto-frame {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 1;
 }
 
 .description {

@@ -2,7 +2,10 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-when the worklist component is shown i want the picture on the top to change from "foto-achi.png" to "foto-achi-2.png"
+make the two images
+<Image src={display === 'work' ? "/foto-achi-2.jpg" : "/foto-achi.jpg"} width={300} height={450} alt="Logo" className="foto-achi" />
+        <Image src={"/frame.png"} width={400} height={600} alt="Logo" className="foto-frame" />
+sit on top of each other. 
 
 <!-- .2 Disclaimer -->
 
