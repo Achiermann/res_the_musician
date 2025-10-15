@@ -26,8 +26,8 @@ export default function ClientWrapper() {
       </header>
       <main className="main">
         <div className="image-stack">
-          <Image src={display === 'work' ? "/foto-achi-2.jpg" : "/foto-achi.jpg"} width={300} height={450} alt="Logo" className="foto-achi" />
-          <Image src={"/frame.png"} width={400} height={570} alt="Logo" className="foto-frame" />
+          <Image src={display === 'work' ? "/foto-achi-2-small.png" : "/foto-achi-small.jpg"} width={300} height={450} alt="Logo" className="foto-achi" />
+          <Image src={"/frame-small.png"} width={400} height={570} alt="Logo" className="foto-frame" />
         </div>
         <div className="nav-bar">
         {display === 'work' && (
