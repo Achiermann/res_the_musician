@@ -1,6 +1,7 @@
 import '../styles/main.css';
 import { Toaster } from 'react-hot-toast';
 import { Cormorant_Garamond } from 'next/font/google';
+import ServiceWorkerRegister from './components/serviceWorkerRegister';
 
 export const metadata = {
     title: { default: "Gigs", template: "%s | Gigs" },
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className={cormorantGaramond.className}>
         {children}
         <Toaster position="top-right" />
+                <ServiceWorkerRegister />
       </body>
     </html>
   );

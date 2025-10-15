@@ -8,10 +8,10 @@
 "orientation":"any",
 "display":"standalone",
 "dir":"auto",
-"lang":"en-GB",
-"name":"Gigs",
-"short_name":"gigs",
-"start_url":"achiachi.ch/admin",
-"scope":"achiachi.ch",
-"description":"Add Gigs",
-"id":"gigs.app"}
+ "lang": "en-GB",
+  "name": "Gigs",
+  "short_name": "gigs",
+  "start_url": "/admin/",
+  "scope": "/admin/",
+  "description": "Add Gigs",
+  "id": "gigs.app"}
