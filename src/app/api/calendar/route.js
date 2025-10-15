@@ -31,7 +31,7 @@ export async function GET(req) {
       ];
 
       const event = {
-        title: gig.act,
+        title: `Gig: ${gig.act}${gig.location ? `, ${gig.location}` : ''}`.trim(),
         description: gig.comments || '',
         location: [gig.venue, gig.location].filter(Boolean).join(', '),
         start: eventStart,
