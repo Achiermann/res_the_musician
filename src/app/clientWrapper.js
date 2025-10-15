@@ -19,7 +19,7 @@ export default function ClientWrapper() {
         </div>
       </header>
       <main className="main">
-        <Image src="/foto-achi.jpg" width={300} height={450} alt="Logo" className="foto-achi" />
+        <Image src={display === 'work' ? "/foto-achi-2.jpg" : "/foto-achi.jpg"} width={300} height={450} alt="Logo" className="foto-achi" />
         <div className="nav-bar">
         <button className="nav-option-btn" style={display === 'live' ? {textDecoration: 'underline'} : {}} onClick={() => setDisplay('live')}>live</button>
         <button className="nav-option-btn" style={display === 'work' ? {textDecoration: 'underline'} : {}} onClick={() => setDisplay('work')}>work</button>

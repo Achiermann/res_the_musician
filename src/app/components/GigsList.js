@@ -88,7 +88,7 @@ export default function GigsList({ view }) {
         {years.map((year) => (
           <div key={year}>
             <h2 className="past-gigs-year">{year}</h2>
-            <ul className="gigs-list">
+            <ul className="gigs-list, past-gigs-list-ul">
               {pastGigsByYear[year].map((gig) => (
                 <li key={gig.id} className="gigs-list-item past-show">
                   <div className="gigs-list-item-date">
@@ -110,9 +110,6 @@ export default function GigsList({ view }) {
                       <div className="gigs-list-item-location">{gig.location}</div>
                     )}
                   </div>
-                  {gig.comments && (
-                    <div className="gigs-list-item-comments">{gig.comments}</div>
-                  )}
                 </li>
               ))}
             </ul>

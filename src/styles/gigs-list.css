@@ -9,22 +9,23 @@
 }
 
 .gigs-list {
+  margin-top: 30px;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0;
-  width: 500px;
+  width: 50%;
 }
 
 .gigs-list-item {
   display: grid;
-  grid-template-columns: 1.5fr 3fr 2fr 1fr;
+  grid-template-columns: .7fr 1.3fr 1fr .6fr 1.5fr;
   margin: 10px 0 10px 0;
   box-shadow: var(--shadow-sm);
   transition: background-color 0.15s ease;
 }
 
-.gigs-list-item-date, .gigs-list-item-act, .gigs-list-item-venue, .gigs-list-item-location {
+.gigs-list-item-date, .gigs-list-item-act, .gigs-list-item-venue, .gigs-list-item-location, .gigs-list-item-comments {
   font-size: 1rem;
   color: var(--color-text);
   margin-bottom: 0;
@@ -43,7 +44,6 @@
 }
 
 .gigs-list-item-comments {
-  grid-column: 1 / -1;
   font-size: 0.875rem;
   color: var(--color-muted);
 }
@@ -57,10 +57,6 @@
   text-align: center;
 }
 
-.past-concerts-title{
-  margin-top: 40px;
-}
-
 
 /* .2 PAST SHOWS */
 
@@ -70,15 +66,30 @@
   flex-direction: column;
   gap: 0;
   margin-top: 40px;
-  width: 500px;
+  width: 40%;
+}
+
+.past-concerts-title{
+  margin-top: 40px;
+}
+
+.gigs-list.past-gigs-list-ul{
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .gigs-list-item.past-show{
   display: grid;
-  /* grid-template-columns: 1.5fr 2.6fr 3fr 1.5fr; */
+  width: 100%;
+  grid-template-columns: 1fr 2.3fr 2.3fr 1.2fr;
   margin: 10px 0 10px 0;
   box-shadow: var(--shadow-sm);
   transition: background-color 0.15s ease;
+}
+
+.past-gigs-year{
+  border-bottom: black 1px solid;
 }
 
 /* .1.        MOBILE                                                                             */
@@ -87,6 +98,8 @@
   .gigs-list {
     width: 100%;
     padding: 0 var(--space-2);
+    background-color: rgb(255, 255, 255, 0.8);
+    border-radius: 5px;
   }
 
   .gigs-list-item {
@@ -119,5 +132,12 @@
 
   .gigs-list-item-date {
     font-size: 1rem;
+  }
+
+.past-gigs-list {
+    width: 100%;
+    padding: 0 var(--space-2);
+    background-color: rgb(255, 255, 255, 0.8);
+    border-radius: 5px;
   }
 }

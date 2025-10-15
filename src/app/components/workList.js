@@ -28,7 +28,7 @@ console.log('currentProject', currentProject);
           <h2>{artist}</h2>
       {work.filter(item => item.artist === artist).map(project => (
          <div key={project.id} className="work-list-item">
-          <div className="work-list-item-title" onMouseOver={() => setDisplayedProject(project.title)}>{project.title}</div>
+          <div className="work-list-item-title" onClick={() => setDisplayedProject(project.title)}>{project.title}</div>
         </div>
       ))}
         </div>
