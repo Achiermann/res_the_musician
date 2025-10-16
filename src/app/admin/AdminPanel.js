@@ -248,7 +248,19 @@ export default function AdminPanel() {
       </div>
 
       {showNewGigForm && (
-        <form className="admin-panel-form" onSubmit={handleCreateGig}>
+        <>
+          <div className="admin-panel-form-backdrop" onClick={() => setShowNewGigForm(false)} />
+          <form className="admin-panel-form" onSubmit={handleCreateGig}>
+          <div className="admin-panel-header">
+            <h2>Create Gig</h2>
+          </div>
+          <button
+            type="button"
+            className="admin-panel-cancel-button"
+            onClick={() => setShowNewGigForm(false)}
+          >
+            Cancel
+          </button>
           <div className="admin-panel-form-row">
             <label> Act <span className="admin-panel-form-required">*</span> <input type="text" name="act" value={formData.act} onChange={handleInputChange} required /> </label>
             <label> Date <span className="admin-panel-form-required">*</span> <input type="date" name="date" value={formData.date} onChange={handleInputChange} required /> </label>
@@ -273,6 +285,7 @@ export default function AdminPanel() {
             Create Gig
           </button>
         </form>
+        </>
       )}
 
       <div className="admin-panel-table-wrapper">

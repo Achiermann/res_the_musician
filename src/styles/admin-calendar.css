@@ -90,9 +90,9 @@
 }
 
 .admin-calendar-gig-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-brand);
+  width: 15px;
+  height: 15px;
+  background-color: #FF71FF;
   border-radius: 50%;
 }
 

@@ -19,6 +19,18 @@
 
 .admin-panel {
   width: 100%;
+  position: relative;
+}
+
+/* Form backdrop overlay */
+.admin-panel-form-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
 }
 
 .admin-panel-header {
@@ -34,11 +46,26 @@
 
 /* Form styles */
 .admin-panel-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: var(--color-surface);
   padding: var(--space-5);
   border-radius: var(--radius);
-  margin-bottom: var(--space-5);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
+  z-index: 1001;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.admin-panel-cancel-button {
+  margin-bottom: 20px;
+  background-color: #FF71FF;
+  border: #ff5fff 2px solid;
+  color: white;
 }
 
 .admin-panel-form-row {
