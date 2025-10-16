@@ -3,7 +3,10 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useGigsStore } from '@/stores/useGigsStore';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import '../../styles/admin-panel.css';
+import '../../styles/admin-calendar.css';
 
 export default function AdminPanel() {
   /*** VARIABLES ***/
@@ -201,6 +204,31 @@ export default function AdminPanel() {
     groupedGigs.push({ type: 'gig', data: gig });
   });
 
+  /*** CALENDAR FUNCTIONS ***/
+  function handleDateClick(date) {
+    const formattedDate = date.toISOString().split('T')[0];
+    setFormData((prev) => ({ ...prev, date: formattedDate }));
+    setShowNewGigForm(true);
+  }
+
+  function getTileContent({ date, view }) {
+    if (view === 'month') {
+      const dateString = date.toISOString().split('T')[0];
+      const gigsOnDate = gigs.filter((gig) => gig.date === dateString);
+
+      if (gigsOnDate.length > 0) {
+        return (
+          <div className="admin-calendar-tile-content">
+            {gigsOnDate.map((gig) => (
+              <div key={gig.id} className="admin-calendar-gig-dot" title={gig.act} />
+            ))}
+          </div>
+        );
+      }
+    }
+    return null;
+  }
+
   return (
     <div className="admin-panel">
       <div className="admin-panel-header">
@@ -210,6 +238,13 @@ export default function AdminPanel() {
         >
           {showNewGigForm ? 'Cancel' : 'New Gig'}
         </button>
+      </div>
+
+      <div className="admin-calendar-wrapper">
+        <Calendar
+          onClickDay={handleDateClick}
+          tileContent={getTileContent}
+        />
       </div>
 
       {showNewGigForm && (
