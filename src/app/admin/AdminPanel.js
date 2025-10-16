@@ -10,6 +10,7 @@ export default function AdminPanel() {
   const { gigs, loading, fetchGigs, addGig, updateGig, deleteGig } = useGigsStore();
   const [showNewGigForm, setShowNewGigForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [selectedGig, setSelectedGig] = useState(null);
   const [formData, setFormData] = useState({
     act: '',
     date: '',
@@ -150,6 +151,21 @@ export default function AdminPanel() {
     }
   }
 
+  function handleRowClick(gig) {
+    setSelectedGig(gig);
+  }
+
+  function handleCloseModal() {
+    setSelectedGig(null);
+  }
+
+  function handleModalFieldUpdate(field, value) {
+    if (selectedGig) {
+      handleUpdateGig(selectedGig.id, { ...selectedGig, [field]: value });
+      setSelectedGig({ ...selectedGig, [field]: value });
+    }
+  }
+
   useEffect(() => {
     fetchGigs();
   }, [fetchGigs]);
@@ -158,6 +174,32 @@ export default function AdminPanel() {
   if (loading) {
     return <div className="admin-panel-loading">Loading...</div>;
   }
+
+  // Group gigs by year and month
+  const sortedGigs = [...gigs].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const groupedGigs = [];
+  let currentYear = null;
+  let currentMonth = null;
+
+  sortedGigs.forEach((gig) => {
+    const gigDate = new Date(gig.date);
+    const year = gigDate.getFullYear();
+    const month = gigDate.toLocaleString('en-US', { month: 'long' });
+
+    if (year !== currentYear) {
+      groupedGigs.push({ type: 'year', value: year });
+      currentYear = year;
+      currentMonth = null;
+    }
+
+    if (month !== currentMonth) {
+      groupedGigs.push({ type: 'month', value: month });
+      currentMonth = month;
+    }
+
+    groupedGigs.push({ type: 'gig', data: gig });
+  });
 
   return (
     <div className="admin-panel">
@@ -222,9 +264,25 @@ export default function AdminPanel() {
                 </td>
               </tr>
             )}
-            {gigs.map((gig) => (
-              <tr key={gig.id}>
-                <td>
+            {groupedGigs.map((item, index) => {
+              if (item.type === 'year') {
+                return (
+                  <tr key={`year-${item.value}`} className="admin-panel-year-row">
+                    <td colSpan="10">{item.value}</td>
+                  </tr>
+                );
+              }
+              if (item.type === 'month') {
+                return (
+                  <tr key={`month-${index}`} className="admin-panel-month-row">
+                    <td colSpan="10">{item.value}</td>
+                  </tr>
+                );
+              }
+              const gig = item.data;
+              return (
+              <tr key={gig.id} onClick={() => handleRowClick(gig)} className="admin-panel-gig-row">
+                <td className="admin-panel-date-cell">
                   {editingId === gig.id ? (
                     <input
                       type="date"
@@ -232,7 +290,10 @@ export default function AdminPanel() {
                       onBlur={(e) => handleFieldUpdate(gig.id, 'date', e.target.value)}
                     />
                   ) : (
-                    new Date(gig.date).toLocaleDateString()
+                    <>
+                      <span className="admin-panel-date-desktop">{new Date(gig.date).toLocaleDateString()}</span>
+                      <span className="admin-panel-date-mobile">{new Date(gig.date).getDate()}.</span>
+                    </>
                   )}
                 </td>
                 <td>
@@ -359,10 +420,106 @@ export default function AdminPanel() {
                   </div>
                 </td>
               </tr>
-            ))}
+              );
+            })}
           </tbody>
         </table>
       </div>
+
+      {selectedGig && (
+        <div className="admin-panel-modal-overlay" onClick={handleCloseModal}>
+          <div className="admin-panel-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="admin-panel-modal-header">
+              <h2>Edit Gig Details</h2>
+              <button onClick={handleCloseModal} className="admin-panel-modal-close">&times;</button>
+            </div>
+            <div className="admin-panel-modal-content">
+              <label>
+                Act
+                <input
+                  type="text"
+                  value={selectedGig.act}
+                  onChange={(e) => handleModalFieldUpdate('act', e.target.value)}
+                />
+              </label>
+              <label>
+                Date
+                <input
+                  type="date"
+                  value={selectedGig.date}
+                  onChange={(e) => handleModalFieldUpdate('date', e.target.value)}
+                />
+              </label>
+              <label>
+                Venue
+                <input
+                  type="text"
+                  value={selectedGig.venue || ''}
+                  onChange={(e) => handleModalFieldUpdate('venue', e.target.value)}
+                />
+              </label>
+              <label>
+                Location
+                <input
+                  type="text"
+                  value={selectedGig.location || ''}
+                  onChange={(e) => handleModalFieldUpdate('location', e.target.value)}
+                />
+              </label>
+              <label>
+                Start Time
+                <input
+                  type="time"
+                  value={selectedGig.start || ''}
+                  onChange={(e) => handleModalFieldUpdate('start', e.target.value)}
+                />
+              </label>
+              <label>
+                End Time
+                <input
+                  type="time"
+                  value={selectedGig.end || ''}
+                  onChange={(e) => handleModalFieldUpdate('end', e.target.value)}
+                />
+              </label>
+              <label>
+                URL
+                <input
+                  type="url"
+                  value={selectedGig.url || ''}
+                  onChange={(e) => handleModalFieldUpdate('url', e.target.value)}
+                />
+              </label>
+              <label>
+                Status
+                <select
+                  value={selectedGig.status}
+                  onChange={(e) => handleModalFieldUpdate('status', e.target.value)}
+                >
+                  <option value="offen">Offen</option>
+                  <option value="fix">Fix</option>
+                </select>
+              </label>
+              <label>
+                Comments
+                <textarea
+                  value={selectedGig.comments || ''}
+                  onChange={(e) => handleModalFieldUpdate('comments', e.target.value)}
+                  rows="4"
+                />
+              </label>
+              <div className="admin-panel-modal-actions">
+                <button onClick={() => handleDuplicateGig(selectedGig)} className="admin-panel-action-button">
+                  Duplicate
+                </button>
+                <button onClick={() => { handleDeleteGig(selectedGig.id); handleCloseModal(); }} className="admin-panel-action-button-delete">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

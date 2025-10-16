@@ -5,7 +5,7 @@ import ServiceWorkerRegister from './components/serviceWorkerRegister';
 
 
 export const metadata = {
-  title: { default: 'Gigs', template: '%s | Gigs' },
+  title: { default: 'AchiAchi', template: '%s | AchiAchi' },
   description: 'Add gigs',
   themeColor: '#ffffff',
   manifest: '/manifest.json',

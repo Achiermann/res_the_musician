@@ -1,3 +1,22 @@
+/* Admin page specific styles */
+.admin-page {
+  background-color: #c5ffb2;
+}
+
+.admin-page h1,
+.admin-page h2 {
+  color: #FF71FF;
+}
+
+.header{
+  height: 50px !important;
+  margin-bottom: 20px !important;
+}
+
+.admin-page td{
+  font-size: 15px !important;
+}
+
 .admin-panel {
   width: 100%;
 }
@@ -66,11 +85,18 @@
   font-family: var(--font-sans);
 }
 
+.admin-panel-new-button {
+  background-color: #FF71FF;
+  border: #ff5fff 2px solid;
+  color: white;
+}
 
 /* Table styles */
 .admin-panel-table-wrapper {
+  border-radius: 1px;
+  border: black 2px solid;
+  overflow: hidden;
   overflow-x: auto;
-  border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
@@ -81,7 +107,7 @@
 }
 
 .admin-panel-table thead {
-  background-color: var(--color-surface);
+  background-color: #FF71FF;
 }
 
 .admin-panel-table th {
@@ -100,8 +126,38 @@
   color: var(--color-text);
 }
 
-.admin-panel-table tbody tr:hover {
-  background-color: var(--color-surface);
+
+/* Year and Month separator rows */
+.admin-panel-year-row {
+  background-color: #ffdcff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.admin-panel-year-row td {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: var(--space-3) var(--space-4);
+  color: rgb(0, 0, 0);
+  text-align: left;
+  border: none;
+}
+
+.admin-panel-month-row {
+  background-color: #ffe9ff;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
+.admin-panel-month-row td {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  color: #4a0a4a;
+  text-align: left;
+  border: none;
 }
 
 .admin-panel-table-empty {
@@ -172,17 +228,138 @@
   margin: 10px;
 }
 
+/* Modal styles */
+.admin-panel-modal-overlay {
+  display: none;
+}
+
+.admin-panel-modal {
+  background: white;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.admin-panel-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-panel-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.admin-panel-modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--color-muted);
+  line-height: 1;
+  padding: 0;
+}
+
+.admin-panel-modal-content {
+  padding: var(--space-4);
+}
+
+.admin-panel-modal-content label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+}
+
+.admin-panel-modal-content input,
+.admin-panel-modal-content select,
+.admin-panel-modal-content textarea {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.admin-panel-modal-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Desktop/Mobile date display toggle */
+.admin-panel-date-mobile {
+  display: none;
+}
+
+.admin-panel-date-desktop {
+  display: inline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  /* Center and enlarge the New Gig button */
+  .admin-panel-header {
+    text-align: center;
+  }
+
+  .admin-panel-new-button {
+    padding: var(--space-3) var(--space-5);
+    font-size: 1.1rem;
+  }
+
+  /* Show mobile date format (day only) */
+  .admin-panel-date-mobile {
+    display: inline;
+  }
+
+  .admin-panel-date-desktop {
+    display: none;
+  }
+
+  /* Hide columns except date, act, and venue */
+  .admin-panel-table th:nth-child(n+4),
+  .admin-panel-table td:nth-child(n+4) {
+    display: none;
+  }
+
+  /* Make rows clickable */
+  .admin-panel-gig-row {
+    cursor: pointer;
+  }
+
+  .admin-panel-gig-row:hover {
+    background-color: var(--color-surface);
+  }
+
+  /* Show modal overlay on mobile */
+  .admin-panel-modal-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+
   .admin-panel-form-row {
     flex-direction: column;
   }
 
   .admin-panel-table-wrapper {
-    overflow-x: scroll;
-  }
-
-  .admin-panel-table {
-    min-width: 800px;
+    overflow-x: auto;
   }
 }
