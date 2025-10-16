@@ -79,7 +79,7 @@ body {
 
 html{
   background-color: var(--color-bg);
-  background-image: url('/bg-pic-lines.png');
+  background-image: url('/bg-pic-lines-small.png');
   background-size: cover;
   background-attachment: fixed;
 }
