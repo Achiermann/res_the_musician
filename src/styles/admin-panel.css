@@ -14,7 +14,6 @@
 }
 
 .admin-page td{
-  font-size: 15px !important;
 }
 
 .admin-panel {
@@ -79,7 +78,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text);
 }
@@ -94,7 +92,6 @@
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 1rem;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
@@ -109,7 +106,7 @@
 
 .admin-panel-form textarea {
   resize: vertical;
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
 }
 
 .admin-panel-new-button {
@@ -141,7 +138,6 @@
   padding: var(--space-3) var(--space-4);
   text-align: left;
   font-weight: 600;
-  font-size: 0.875rem;
   color: var(--color-text);
   border-bottom: 2px solid var(--color-border);
 }
@@ -149,7 +145,6 @@
 .admin-panel-table td {
   padding: var(--space-3) var(--space-4);
   border-bottom: 1px solid var(--color-border);
-  font-size: 0.875rem;
   color: var(--color-text);
 }
 
@@ -163,7 +158,6 @@
 }
 
 .admin-panel-year-row td {
-  font-size: 1.25rem;
   font-weight: 700;
   padding: var(--space-3) var(--space-4);
   color: rgb(0, 0, 0);
@@ -179,7 +173,6 @@
 }
 
 .admin-panel-month-row td {
-  font-size: 1rem;
   font-weight: 600;
   padding: var(--space-2) var(--space-4);
   color: #4a0a4a;
@@ -200,13 +193,12 @@
   padding: var(--space-2);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 0.875rem;
   background-color: var(--color-bg);
 }
 
 .admin-panel-table textarea {
   resize: vertical;
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
 }
 
 /* Status badges */
@@ -216,7 +208,6 @@
   background-color: #fef3c7;
   color: #92400e;
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -227,7 +218,6 @@
   background-color: #d1fae5;
   color: #065f46;
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -240,13 +230,11 @@
 
 .admin-panel-action-button {
   padding: var(--space-2) var(--space-3);
-  font-size: 0.75rem;
   font-weight: 500;
 }
 
 .admin-panel-action-button-delete {
   padding: var(--space-2) var(--space-3);
-  font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-error);
 }
@@ -280,13 +268,11 @@
 
 .admin-panel-modal-header h2 {
   margin: 0;
-  font-size: 1.25rem;
 }
 
 .admin-panel-modal-close {
   background: none;
   border: none;
-  font-size: 2rem;
   cursor: pointer;
   color: var(--color-muted);
   line-height: 1;
@@ -311,7 +297,6 @@
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 1rem;
   font-family: inherit;
 }
 
@@ -341,7 +326,6 @@
 
   .admin-panel-new-button {
     padding: var(--space-3) var(--space-5);
-    font-size: 1.1rem;
   }
 
   /* Show mobile date format (day only) */

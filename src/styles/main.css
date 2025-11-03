@@ -1,15 +1,17 @@
 /* Design tokens */
 :root {
   /* Colors - Vulfpeck minimal palette */
-  --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #000000;
-  --color-muted: #808080;
+  --color-text: #232323;
+  --color-muted: #000000;
   --color-brand: #000000;
   --color-border: #000000;
   --color-error: #000000;
   --color-success: #000000;
   --color-primary: #935A00;
+  --color-bg: #fffbe1;
+  --color-text-bg: #ffefef;
+  --color-section-bg: #ffffff;
 
   /* Radii - minimal, no rounded corners */
   --radius-sm: 0px;
@@ -31,8 +33,8 @@
   --space-7: 48px;
   --space-8: 64px;
 
-  /* Typography - Cormorant Garamond */
-  --font-sans: 'Cormorant Garamond', serif;
+  /* Typography - Cutive Mono */
+  --font-primary: 'Cutive Mono', monospace;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', monospace;
 
    /* iOS safe area env() fallbacks */
@@ -70,18 +72,21 @@ body {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
+  font-size: 15px;
   color: var(--color-text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  -moz-osx-font-smoothing: grayscale;
+  text-transform: uppercase;
 }
 
 html{
   background-color: var(--color-bg);
-  background-image: url('/bg-pic-lines-small.png');
-  background-size: cover;
-  background-attachment: fixed;
+}
+
+p, span, h1, h2, h3, h4, h5, h6, a, li, button, input, textarea {
+  background-color: var(--color-text-bg);
 }
 
 picture,
@@ -95,7 +100,13 @@ svg {
 input,
 button,
 textarea,
-select {
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font: inherit;
 }
 
@@ -148,10 +159,6 @@ button, a:hover {
   .container {
     padding-left: var(--space-3);
     padding-right: var(--space-3);
-  }
-
-  body {
-    font-size: 14px;
   }
 
   button, a {

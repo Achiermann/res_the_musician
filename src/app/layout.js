@@ -1,6 +1,6 @@
 import '../styles/main.css';
 import { Toaster } from 'react-hot-toast';
-import { Cormorant_Garamond } from 'next/font/google';
+import { Cutive_Mono } from 'next/font/google';
 import ServiceWorkerRegister from './components/serviceWorkerRegister';
 
 
@@ -12,9 +12,9 @@ export const metadata = {
 
   // iOS PWA bits:
   appleWebApp: {
-    capable: true,                
-    statusBarStyle: 'black-translucent', 
-    title: 'Gigs',    
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Gigs',
   },
   icons: {
     // iOS reads this, not the manifest
@@ -37,8 +37,8 @@ export const viewport = {
 };
 
 
-const cormorantGaramond = Cormorant_Garamond({
-  weight: ['400', '700'],
+const cutiveMono = Cutive_Mono({
+  weight: ['400'],
   subsets: ['latin'],
   display: 'swap',
 });
@@ -46,7 +46,7 @@ const cormorantGaramond = Cormorant_Garamond({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cormorantGaramond.className}>
+      <body className={cutiveMono.className}>
         {children}
         <Toaster position="top-right" />
                 <ServiceWorkerRegister />

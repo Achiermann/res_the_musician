@@ -2,9 +2,7 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-**Only in the /admin page!!**
-put the "cancel" button on top of the ".admin-panel" (with a margin-bottom of "20px") when the admin-panel is being displayed. 
-Also when creating a gig put the words "create gig" in the admin-panel-header and display that. 
+The in main.css defined font-size seems to be overwritten somewhere for the contents of class="live-view-toggle". find it and delete it so they inherit the font size defined at main.css
 
 <!-- .2 Disclaimer -->
 
