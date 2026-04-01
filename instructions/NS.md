@@ -2,7 +2,7 @@ ONLY follow the following instructions if explicitly told:
 
 <!-- .1 Task -->
 
-The in main.css defined font-size seems to be overwritten somewhere for the contents of class="live-view-toggle". find it and delete it so they inherit the font size defined at main.css
+the elemet with the id="player" is still visible in the div with the class="inline_player ..." even though i accessed it via css and put display: none. is it because it has display="block"?
 
 <!-- .2 Disclaimer -->
 

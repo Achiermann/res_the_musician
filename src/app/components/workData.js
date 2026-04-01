@@ -18,7 +18,7 @@ export const work = [
 },
 
 {id: 3,
-    title: "Tank atop the bank",
+    title: "ZhanZhan",
     type: "Album",
     artist: "ZhanZhan",
     year: "2023",    
@@ -30,9 +30,153 @@ export const work = [
     title: "Sauvage",
     type: "EP",
     artist: "Soybomb",
-    year: "2020",    
-    description: 'Progressing from the angular, snappy sounds of the band’s 2018 «Jonglage» album, the Sauvage EP breathes an atmosphere of wonder and possibility. Dreamy and psychedelic, each song is delivered with the band’s signature lyricism, playfulness, and measured optimism. From the tender and naive Breakfast in Bed to the bittersweet headiness of Delicate High, Sauvage is a little world of wonder, humour, and hope. credits released June 30, 2020 Written and produced by Beda Mächler, Andreas Achermann, Linus Gmünder Supported by Kanton Schwyz, Kanton Zug, C. & A. Kupper-Stiftung Mixed by Giuliano Sulzberger Mastered by Richard Dodd Artwork by Beda Mächler',
+    year: "2020",
+    description: 'The last EP we released as the original trio formation with Soybomb so far. Recorded in the same sessions as the Jonglage recordings, we figgured these songs should be released as an EP on their own.',
     bandcamp: {src: "https://bandcamp.com/EmbeddedPlayer/album=3528017157/size=large/bgcol=ffffff/linkcol=333333/artwork=small/transparent=true/", href: "https://soybomb.bandcamp.com/album/sauvage"}
+},
+
+{id: 6,
+    title: "Plastic Festival",
+    type: "EP",
+    artist: "Soybomb",
+    year: "2016",
+    description: 'The first ever Soybomb release back in the days!',
+    spotify_src: "https://open.spotify.com/embed/album/3WWbVABToC18nCego9W77f?utm_source=generator&theme=0"
+},
+
+{id: 7,
+    title: "Rigi Sessions",
+    type: "EP",
+    artist: "Soybomb",
+    year: "2018",
+    description: 'The rigi sessions are a 4 piece live session where we performed songs by other artists in a acoustic setting in a cozy hut on mount rigi.',
+    spotify_src: "https://open.spotify.com/embed/album/6X2FXn4pSe3RHvaImFgJQa?utm_source=generator&theme=0"
+},
+
+{id: 8,
+    title: "Jonglage",
+    type: "Album",
+    artist: "Soybomb",
+    year: "2019",
+    description: 'The first album we released with Soybomb. Recorded in a grain silo in Brunnen, Schwyz',
+    spotify_src: "https://open.spotify.com/embed/album/5lCHhcHmrSnIuJCSrFrgLn?utm_source=generator&theme=0"
+},
+
+{id: 9,
+    title: "Monocular Tales",
+    type: "EP",
+    artist: "Lo_Res",
+    year: "2017",
+    description: 'This is the first and only released EP with my first solo project Lo_Res. I accidentally deleted the second EP so im left with ruff mixes. Maybe someday I`m gonna release them as are.',
+    spotify_src: "https://open.spotify.com/embed/album/0gcb0CoHdpqlzOGZ932CQG?utm_source=generator&theme=0"
+},
+
+{id: 10,
+    title: "Eclecta - Sidewalls (Lo_Res Remix)",
+    type: "Eclecta - Sidewalls (Lo_Res Remix)",
+    artist: "Lo_Res",
+    year: "2017",
+    description: 'I had the honour to produce a remix for the talented Eclecta (Andrina Bollinger and Marena Witcher). Love how it came out',
+    spotify_src: "https://open.spotify.com/embed/track/6t66fkWDGKcevwX3aNQyVP?utm_source=generator&theme=0"
+},
+
+{id: 11,
+    title: "Baba Shrimps - Road To Rome (Lo_Res Remix)",
+    type: "Baba Shrimps - Road To Rome (Lo_Res Remix)",
+    artist: "Lo_Res",
+    year: "2018",
+    description: 'I had the honour to produce a remix for the great Baba Shrimps from Zürich. Love how it came out',
+    spotify_src: "https://open.spotify.com/embed/track/1YDx6sul4jtEgLoHnhwt59?utm_source=generator&theme=0"
+},
+
+{id: 12,
+    title: "Ganzoni per la mia ragazza",
+    type: "EP",
+    artist: "Andrea Di Punto",
+    year: "2018",
+    description: 'This was a gift for my girlfriend when i started to learn italian. Hence the very bad italian. I mean i just realized i spelled "canzoni" wrong wtf? :D Anyways it was hella fun to produce this and i love that i did this. Maybe someday there will be more to hear from Andrea. Maybe even a live show once? ',
+    bandcamp: {src: "https://bandcamp.com/EmbeddedPlayer/album=2394181524/size=large/bgcol=ffffff/linkcol=333333/artwork=small/transparent=true/", href: "https://andreadipunto.bandcamp.com/album/ganzoni-per-la-mia-ragazza"}
+},
+
+{id: 13,
+    title: "Plastic Festival",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2017",
+    description: 'This was the first ever shot video with Soybomb. Shot at Langstrasse in Zürich. I just had a shoulder surgery hence my funky dancing. Notice that my right arm is always pressed against my body.',
+    youtube: {src: "https://www.youtube.com/embed/g9WQ4RvrbdI", href: "https://www.youtube.com/watch?v=g9WQ4RvrbdI"}
+},
+
+{id: 14,
+    title: "Baby Faith",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2017",
+    description: 'Second music video entirely edited and produced by bedas old man Reto. Thank you so much for this Reto. Its composed with old super8 footage he once shot back in the days. At one point you can even see young beda (the lead singer).',
+    youtube: {src: "https://www.youtube.com/embed/no78JlRxuxA", href: "https://www.youtube.com/watch?v=no78JlRxuxA"}
+},
+
+{id: 15,
+    title: "Part Of Me Is You",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2017",
+    description: 'This music video was shot in France near Marseille. What an adventure it was. We basically just went there and shot whatever came to our heads. Thanks to Samuel Dütsch for the open mind to do this. Also thanks to Christoph Giesch for joining and helping us on this wild trip.',
+    youtube: {src: "https://www.youtube.com/embed/WPzzOCoQ5-Y", href: "https://www.youtube.com/watch?v=WPzzOCoQ5-Y"}
+},
+
+{id: 16,
+    title: "Rigi Sessions - Soybomb plays Sophie Hunger",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2018",
+    description: 'The rigi sessions are a 4 piece live session where we performed songs by other artists in a acoustic setting in a cozy hut on mount rigi.',
+    youtube: {src: "https://www.youtube.com/embed/MDrDpca-OZ8", href: "https://www.youtube.com/watch?v=MDrDpca-OZ8"}
+},
+
+{id: 17,
+    title: "Rigi Sessions - Soybomb plays Odd Beholder",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2018",
+    description: 'The rigi sessions are a 4 piece live session where we performed songs by other artists in a acoustic setting in a cozy hut on mount rigi.',
+    youtube: {src: "https://www.youtube.com/embed/ViezFvdS2es", href: "https://www.youtube.com/watch?v=ViezFvdS2es"}
+},
+
+{id: 18,
+    title: "Rigi Sessions - Soybomb plays Pablo Nouvelle",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2018",
+    description: 'The rigi sessions are a 4 piece live session where we performed songs by other artists in a acoustic setting in a cozy hut on mount rigi.',
+    youtube: {src: "https://www.youtube.com/embed/4vCafxXKSZU", href: "https://www.youtube.com/watch?v=4vCafxXKSZU"}
+},
+
+{id: 19,
+    title: "Someone's Got The Best Of Me",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2019",
+    description: 'This is probably one of my favourite videos I`ve ever shot. It was made by the amazingly talented Bild und Freunde who basically pushed us in the crowd of the legendary "Steiner Chilbi" as well as the "LUGA" in Lucerne. Like... what?',
+    youtube: {src: "https://www.youtube.com/embed/2UdKCS64eDU", href: "https://www.youtube.com/watch?v=2UdKCS64eDU"}
+},
+
+{id: 20,
+    title: "Cold Light",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2019",
+    description: 'Another masterpiece by Bild und Freunde. Cant even remember where this was shot, i only know some insanely nice yet slightly naive indoor swimmimng pool lifeguard just gave us a key to this thing and let us do what we then did.',
+    youtube: {src: "https://www.youtube.com/embed/XtoD34dt-h8", href: "https://www.youtube.com/watch?v=XtoD34dt-h8"}
+},
+
+{id: 21,
+    title: "Cold Light live",
+    type: "Video",
+    artist: "Soybomb",
+    year: "2020",
+    description: 'This live video was shot in eastern germany in a very middle of nowhere place near the polish border. It was very cold, but we had electricity and there was light. Good conditions to perform cold light.',
+    youtube: {src: "https://www.youtube.com/embed/Trl07yehog0", href: "https://www.youtube.com/watch?v=Trl07yehog0"}
 },
 
 ]

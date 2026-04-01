@@ -26,28 +26,32 @@ console.log('currentProject', currentProject);
 
   return (
     //.2 WORKLIST SIDEBAR
-    <ul className="work-list-and-display-wrapper">
+    <div className="work-list-and-display-wrapper">
     <div className={`work-list-sidebar ${isSidebarVisible ? 'visible' : 'hidden'}`}>
-      {artists.map((artist) =>
+      {artists.map((artist) => (
         <div key={artist} className="sidebar-item-artist">
           <h2>{artist}</h2>
-      {work.filter(item => item.artist === artist).map(project => (
-         <div key={project.id} className="work-list-item">
-          <div className="work-list-item-title" onClick={() => handleProjectClick(project.title)}>{project.title}</div>
+          {work.filter(item => item.artist === artist).map(project => (
+            <div key={project.id} className="work-list-item">
+              <div className="work-list-item-title" onClick={() => handleProjectClick(project.title)}>{project.title}</div>
+            </div>
+          ))}
         </div>
       ))}
-        </div>
-      )}
     </div>
-{/*//.2 WORK DISPLAY} */}
+    {/* .2 WORK DISPLAY */}
     <div className={`work-display ${isSidebarVisible ? 'hidden' : 'visible'}`} >
       <h1>{currentProject.title}</h1>
       <h2>{currentProject.year} - {currentProject.type}</h2>
-      <p>{currentProject.description}</p>
+      <p>{currentProject.description}</p><div className="player-frame">
       {currentProject.bandcamp && <iframe style={{ border: 0, width: '100%', height: "100%"}} src={currentProject.bandcamp.src} seamless><a href={currentProject.bandcamp.href}></a></iframe>}
-   {currentProject.spotify_src && <iframe data-testid="embed-iframe" style={{ borderRadius: '21px' }} src={currentProject.spotify_src} width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>}
-
+   {currentProject.spotify_src &&
+      <iframe data-testid="embed-iframe" style={{ borderRadius: '21px' }} src={currentProject.spotify_src} width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    }
+   {currentProject.youtube &&
+    <iframe style={{ border: 0, width: '100%', height: "315px"}} src={currentProject.youtube.src} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+    }</div>
     </div>
-    </ul>
+    </div>
   );
 }
