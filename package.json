@@ -13,7 +13,7 @@
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.75.0",
     "ics": "^3.8.1",
-    "next": "15.5.4",
+    "next": "^16.2.2",
     "next-pwa": "^5.6.0",
     "react": "19.1.0",
     "react-calendar": "^6.0.0",
@@ -25,6 +25,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.5.4"
+    "eslint-config-next": "^16.2.2"
   }
 }
