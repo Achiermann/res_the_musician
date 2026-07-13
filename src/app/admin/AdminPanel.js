@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { Check, Copy, Pencil, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useGigsStore } from '@/stores/useGigsStore';
 import Calendar from 'react-calendar';
@@ -169,6 +170,11 @@ export default function AdminPanel() {
     }
   }
 
+  // Postgres time columns come back as hh:mm:ss
+  function formatTime(time) {
+    return time ? time.slice(0, 5) : '';
+  }
+
   useEffect(() => {
     fetchGigs();
   }, [fetchGigs]);
@@ -178,14 +184,20 @@ export default function AdminPanel() {
     return <div className="admin-panel-loading">Loading...</div>;
   }
 
-  // Group gigs by year and month
-  const sortedGigs = [...gigs].sort((a, b) => new Date(b.date) - new Date(a.date));
+  // Only the current month onwards, soonest first
+  const now = new Date();
+  const firstOfMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
 
+  const upcomingGigs = gigs
+    .filter((gig) => gig.date >= firstOfMonth)
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Group gigs by year and month
   const groupedGigs = [];
   let currentYear = null;
   let currentMonth = null;
 
-  sortedGigs.forEach((gig) => {
+  upcomingGigs.forEach((gig) => {
     const gigDate = new Date(gig.date);
     const year = gigDate.getFullYear();
     const month = gigDate.toLocaleString('en-US', { month: 'long' });
@@ -292,23 +304,22 @@ export default function AdminPanel() {
         <table className="admin-panel-table">
           <thead>
             <tr>
-              <th>Date</th>
+              <th className="admin-panel-actions-cell" aria-label="Actions" />
+              <th className="admin-panel-date-cell">Date</th>
               <th>Act</th>
               <th>Venue</th>
               <th>Location</th>
               <th>Start</th>
               <th>End</th>
-              <th>URL</th>
               <th>Status</th>
               <th>Comments</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {gigs.length === 0 && (
+            {upcomingGigs.length === 0 && (
               <tr>
-                <td colSpan="10" className="admin-panel-table-empty">
-                  No gigs yet. Create one!
+                <td colSpan="9" className="admin-panel-table-empty">
+                  No upcoming gigs. Create one!
                 </td>
               </tr>
             )}
@@ -316,20 +327,60 @@ export default function AdminPanel() {
               if (item.type === 'year') {
                 return (
                   <tr key={`year-${item.value}`} className="admin-panel-year-row">
-                    <td colSpan="10">{item.value}</td>
+                    <td colSpan="9">{item.value}</td>
                   </tr>
                 );
               }
               if (item.type === 'month') {
                 return (
                   <tr key={`month-${index}`} className="admin-panel-month-row">
-                    <td colSpan="10">{item.value}</td>
+                    <td colSpan="9">{item.value}</td>
                   </tr>
                 );
               }
               const gig = item.data;
               return (
-              <tr key={gig.id} onClick={() => handleRowClick(gig)} className="admin-panel-gig-row">
+              <Fragment key={gig.id}>
+              <tr onClick={() => handleRowClick(gig)} className="admin-panel-gig-row">
+                <td className="admin-panel-actions-cell">
+                  <div className="admin-panel-actions">
+                    {editingId === gig.id ? (
+                      <button
+                        className="admin-panel-action-button"
+                        onClick={handleCancelEdit}
+                        title="Done"
+                        aria-label="Done"
+                      >
+                        <Check size={18} aria-hidden="true" />
+                      </button>
+                    ) : (
+                      <button
+                        className="admin-panel-action-button"
+                        onClick={() => handleEditClick(gig)}
+                        title="Edit"
+                        aria-label="Edit"
+                      >
+                        <Pencil size={18} aria-hidden="true" />
+                      </button>
+                    )}
+                    <button
+                      className="admin-panel-action-button"
+                      onClick={() => handleDuplicateGig(gig)}
+                      title="Duplicate"
+                      aria-label="Duplicate"
+                    >
+                      <Copy size={18} aria-hidden="true" />
+                    </button>
+                    <button
+                      className="admin-panel-action-button-delete"
+                      onClick={() => handleDeleteGig(gig.id)}
+                      title="Delete"
+                      aria-label="Delete"
+                    >
+                      <Trash2 size={18} aria-hidden="true" />
+                    </button>
+                  </div>
+                </td>
                 <td className="admin-panel-date-cell">
                   {editingId === gig.id ? (
                     <input
@@ -381,33 +432,22 @@ export default function AdminPanel() {
                   {editingId === gig.id ? (
                     <input
                       type="time"
-                      defaultValue={gig.start}
+                      defaultValue={formatTime(gig.start)}
                       onBlur={(e) => handleFieldUpdate(gig.id, 'start', e.target.value)}
                     />
                   ) : (
-                    gig.start
+                    formatTime(gig.start)
                   )}
                 </td>
                 <td>
                   {editingId === gig.id ? (
                     <input
                       type="time"
-                      defaultValue={gig.end}
+                      defaultValue={formatTime(gig.end)}
                       onBlur={(e) => handleFieldUpdate(gig.id, 'end', e.target.value)}
                     />
                   ) : (
-                    gig.end
-                  )}
-                </td>
-                <td>
-                  {editingId === gig.id ? (
-                    <input
-                      type="url"
-                      defaultValue={gig.url}
-                      onBlur={(e) => handleFieldUpdate(gig.id, 'url', e.target.value)}
-                    />
-                  ) : (
-                    gig.url ? <a href={gig.url} target="_blank" rel="noopener noreferrer">{gig.url}</a> : ''
+                    formatTime(gig.end)
                   )}
                 </td>
                 <td>
@@ -436,38 +476,22 @@ export default function AdminPanel() {
                     gig.comments
                   )}
                 </td>
-                <td>
-                  <div className="admin-panel-actions">
-                    {editingId === gig.id ? (
-                      <button
-                        className="admin-panel-action-button"
-                        onClick={handleCancelEdit}
-                      >
-                        Done
-                      </button>
-                    ) : (
-                      <button
-                        className="admin-panel-action-button"
-                        onClick={() => handleEditClick(gig)}
-                      >
-                        Edit
-                      </button>
-                    )}
-                    <button
-                      className="admin-panel-action-button"
-                      onClick={() => handleDuplicateGig(gig)}
-                    >
-                      Duplicate
-                    </button>
-                    <button
-                      className="admin-panel-action-button-delete"
-                      onClick={() => handleDeleteGig(gig.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
               </tr>
+              {editingId === gig.id && (
+                <tr className="admin-panel-edit-row">
+                  <td colSpan="9">
+                    <label>
+                      URL
+                      <input
+                        type="url"
+                        defaultValue={gig.url || ''}
+                        onBlur={(e) => handleFieldUpdate(gig.id, 'url', e.target.value)}
+                      />
+                    </label>
+                  </td>
+                </tr>
+              )}
+              </Fragment>
               );
             })}
           </tbody>
@@ -518,7 +542,7 @@ export default function AdminPanel() {
                 Start Time
                 <input
                   type="time"
-                  value={selectedGig.start || ''}
+                  value={formatTime(selectedGig.start)}
                   onChange={(e) => handleModalFieldUpdate('start', e.target.value)}
                 />
               </label>
@@ -526,7 +550,7 @@ export default function AdminPanel() {
                 End Time
                 <input
                   type="time"
-                  value={selectedGig.end || ''}
+                  value={formatTime(selectedGig.end)}
                   onChange={(e) => handleModalFieldUpdate('end', e.target.value)}
                 />
               </label>
@@ -557,11 +581,21 @@ export default function AdminPanel() {
                 />
               </label>
               <div className="admin-panel-modal-actions">
-                <button onClick={() => handleDuplicateGig(selectedGig)} className="admin-panel-action-button">
-                  Duplicate
+                <button
+                  onClick={() => handleDuplicateGig(selectedGig)}
+                  className="admin-panel-action-button"
+                  title="Duplicate"
+                  aria-label="Duplicate"
+                >
+                  <Copy size={20} aria-hidden="true" />
                 </button>
-                <button onClick={() => { handleDeleteGig(selectedGig.id); handleCloseModal(); }} className="admin-panel-action-button-delete">
-                  Delete
+                <button
+                  onClick={() => { handleDeleteGig(selectedGig.id); handleCloseModal(); }}
+                  className="admin-panel-action-button-delete"
+                  title="Delete"
+                  aria-label="Delete"
+                >
+                  <Trash2 size={20} aria-hidden="true" />
                 </button>
               </div>
             </div>

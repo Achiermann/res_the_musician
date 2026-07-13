@@ -16,6 +16,19 @@
 .admin-page td{
 }
 
+/* Keep the gig table within the viewport: the admin page trades the
+   generous page padding of the public site for a near full-width layout. */
+.admin-page .main {
+  padding: var(--space-2);
+  width: 100%;
+}
+
+.admin-page .container {
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-3);
+}
+
 .admin-panel {
   width: 100%;
   position: relative;
@@ -135,17 +148,30 @@
 }
 
 .admin-panel-table th {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   text-align: left;
   font-weight: 600;
   color: var(--color-text);
   border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
 }
 
 .admin-panel-table td {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text);
+}
+
+/* Extra row holding the fields that are hidden outside of edit mode */
+.admin-panel-edit-row td {
+  background-color: #ffe9ff;
+}
+
+.admin-panel-edit-row label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 600;
 }
 
 
@@ -201,42 +227,67 @@
   font-family: var(--font-primary);
 }
 
-/* Status badges */
-.admin-panel-status-offen {
+/* Status badges: same box for every status so the column reads evenly */
+.admin-panel-status-offen,
+.admin-panel-status-fix {
   display: inline-block;
+  width: 70px;
   padding: var(--space-1) var(--space-2);
-  background-color: #fef3c7;
-  color: #92400e;
   border-radius: var(--radius-sm);
   font-weight: 600;
+  text-align: center;
   text-transform: capitalize;
 }
 
+.admin-panel-status-offen {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
 .admin-panel-status-fix {
-  display: inline-block;
-  padding: var(--space-1) var(--space-2);
   background-color: #d1fae5;
   color: #065f46;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  text-transform: capitalize;
 }
 
 /* Action buttons */
 .admin-panel-actions {
   display: flex;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
-.admin-panel-action-button {
-  padding: var(--space-2) var(--space-3);
+/* Icon-only column: shrink to the width of its icons */
+.admin-panel-actions-cell {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Breathing room between the action icons and the date */
+.admin-panel-date-cell {
+  padding-left: calc(var(--space-3) + 15px);
+}
+
+.admin-panel-action-button,
+.admin-panel-action-button-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
   font-weight: 500;
+  color: var(--color-text);
 }
 
 .admin-panel-action-button-delete {
-  padding: var(--space-2) var(--space-3);
-  font-weight: 500;
   color: var(--color-error);
+}
+
+/* The global `svg { max-width: 100% }` resolves against these shrink-to-fit
+   flex buttons and collapses the icons to zero width, so opt out of it and
+   let each icon's own width/height attributes size it. */
+.admin-panel-actions svg,
+.admin-panel-modal-actions svg {
+  flex: none;
+  max-width: none;
+  stroke: currentColor;
 }
 
 .admin-back-button{
@@ -337,10 +388,19 @@
     display: none;
   }
 
-  /* Hide columns except date, act, and venue */
-  .admin-panel-table th:nth-child(n+4),
-  .admin-panel-table td:nth-child(n+4) {
+  /* Hide the action icons and everything past venue; tapping the row opens the
+     modal instead. Scoped to gig rows so the year/month/empty rows, whose only
+     cell is also nth-child(1), keep spanning the table. */
+  .admin-panel-table th:nth-child(1),
+  .admin-panel-gig-row td:nth-child(1),
+  .admin-panel-table th:nth-child(n+5),
+  .admin-panel-gig-row td:nth-child(n+5) {
     display: none;
+  }
+
+  /* No action icons here, so the gap that separated them has nothing to separate */
+  .admin-panel-date-cell {
+    padding-left: var(--space-3);
   }
 
   /* Make rows clickable */
