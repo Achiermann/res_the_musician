@@ -85,13 +85,31 @@ return null;
 @/lib/validate.js
 "
 import { z } from 'zod';
-export const CreatePayload = z.object({
+
+// Field rules, with no .default() attached.
+const fields = {
 // rename these to your domain fields
 title: z.string().min(1).max(200),
-description: z.string().max(1000).optional(),
+description: z.string().max(1000),
+};
+
+// Create: defaults are applied here only.
+export const CreatePayload = z.object({
+title: fields.title,
+description: fields.description.optional().default(''),
 });
-export const UpdatePayload = CreatePayload.partial();
+
+// Update: same rules, every field optional, NO defaults.
+export const UpdatePayload = z.object({
+title: fields.title.optional(),
+description: fields.description.optional(),
+});
 "
+Do NOT write `UpdatePayload = CreatePayload.partial()`. `.partial()` makes fields
+optional but keeps their `.default()` values, so a field the client never sent is
+emitted by the parser as its default and silently overwrites the stored column on
+PATCH. Build the update schema explicitly from the shared field rules, as above.
+
 Adapt fields, constraints, and types to your resource. Reject extra fields if needed using zod options.
 
 ## Rate limiting (customize policy)

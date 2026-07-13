@@ -79,13 +79,34 @@ return null;
 @/lib/validate.js
 "
 import { z } from 'zod';
-export const CreatePayload = z.object({
+
+// Field rules, with no .default() attached.
+const fields = {
 field_a: z.string().min(1),
-field_b: z.string().optional(),
+field_b: z.string(),
 // add your minimal contract; keep it tight
+};
+
+// Create: defaults are applied here only.
+export const CreatePayload = z.object({
+field_a: fields.field_a,
+field_b: fields.field_b.optional().default(''),
 });
-export const UpdatePayload = CreatePayload.partial();
+
+// Update: same rules, every field optional, NO defaults.
+export const UpdatePayload = z.object({
+field_a: fields.field_a.optional(),
+field_b: fields.field_b.optional(),
+});
 "
+
+Do NOT write `UpdatePayload = CreatePayload.partial()`. `.partial()` makes fields
+optional but keeps their `.default()` values, so a field the client never sent is
+emitted by the parser as its default and overwrites the stored column on PATCH.
+Build the update schema explicitly from the shared field rules, as above.
+
+Also reject an empty update (`Object.keys(parsed.data).length === 0`) rather than
+sending an empty object to the DB.
 
 Validate at the server boundary. Reject unknown/extra fields or coerce intentionally.
 

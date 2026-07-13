@@ -13,12 +13,22 @@ HTTP helper utilities:
 - `json(data, status)` - JSON response helper
 - `err(message, status, extra)` - Error response helper
 - `allow(methods)` - Method guard (returns 405 if not allowed)
+- `dbError(error)` - Maps a Supabase/Postgres error to a status (data errors → 400,
+  unique/FK violation → 409, no rows → 404, anything else → 500). Use this instead of
+  returning 500 for every DB error.
 
 #### `lib/validate.js`
 Zod validation schemas:
-- `CreateEventPayload` - Validates event creation (name, date, time, location, participants)
-- `UpdateEventPayload` - Validates event updates (all fields optional)
-- Generic `CreatePayload` and `UpdatePayload` for other resources
+- `CreateGigPayload` - Validates gig creation (only `act` and `date` are mandatory)
+- `UpdateGigPayload` - Validates gig updates (all fields optional, no defaults)
+
+Two rules when adding a resource here:
+- `start`/`end` are Postgres `time` columns and reject `''`. A blank time is converted
+  to `null` and a non-empty one must match `HH:MM` / `HH:MM:SS`.
+- Never build the update schema with `CreatePayload.partial()`. `.partial()` keeps the
+  `.default()` values, so a field the client never sent is emitted as its default and
+  overwrites the stored column on PATCH. Declare the field rules once without defaults,
+  then apply defaults on the create schema only.
 
 #### `lib/rate-limit.js`
 In-memory rate limiter:

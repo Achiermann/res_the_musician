@@ -1,7 +1,7 @@
 // src/app/api/gigs/route.js
 export const runtime = 'nodejs';
 
-import { json, err, allow } from '@/lib/http';
+import { json, err, allow, dbError } from '@/lib/http';
 import { rateLimit } from '@/lib/rate-limit';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
 import { CreateGigPayload } from '@/lib/validate';
@@ -43,15 +43,7 @@ export async function GET(req) {
 
     const { data, error, count } = await query;
 
-    if (error) {
-      return json({
-        error: 'DB error',
-        code: error.code ?? null,
-        message: error.message ?? null,
-        details: error.details ?? null,
-        hint: error.hint ?? null,
-      }, 500);
-    }
+    if (error) return dbError(error);
 
     return json({ items: data, total: count || 0, page, pageSize });
   } catch (e) {
@@ -89,15 +81,7 @@ export async function POST(req) {
       .select()
       .single();
 
-    if (error) {
-      return json({
-        error: 'DB error',
-        code: error.code ?? null,
-        message: error.message ?? null,
-        details: error.details ?? null,
-        hint: error.hint ?? null,
-      }, 500);
-    }
+    if (error) return dbError(error);
 
     return json(data, 201);
   } catch (e) {

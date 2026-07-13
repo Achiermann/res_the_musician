@@ -1,27 +1,23 @@
 // src/app/api/gigs/[id]/route.js
 export const runtime = 'nodejs';
 
-import { json, err, allow } from '@/lib/http';
+import { json, err, allow, dbError } from '@/lib/http';
 import { rateLimit } from '@/lib/rate-limit';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
 import { UpdateGigPayload } from '@/lib/validate';
 
 // GET /api/gigs/[id]
 export async function GET(_req, { params }) {
+  const { id } = await params;
   const supabase = getSupabaseAdmin();
 
   const { data, error } = await supabase
     .from('concerts')
     .select('id,act,date,venue,location,comments,status,created_at, start,end,url')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
-  if (error) {
-    return json(
-      { error: 'DB error', code: error.code ?? null, message: error.message ?? null, details: error.details ?? null },
-      error.code === 'PGRST116' ? 404 : 500
-    );
-  }
+  if (error) return dbError(error);
 
   return json(data);
 }
@@ -30,6 +26,8 @@ export async function GET(_req, { params }) {
 export async function PATCH(req, { params }) {
   const deny = allow(['PATCH'])(req);
   if (deny) return deny;
+
+  const { id } = await params;
 
   const ip = req.headers.get('x-forwarded-for') || 'local';
   const rl = rateLimit({ key: `gigs:PATCH:${ip}`, max: 20, windowMs: 10_000 });
@@ -47,21 +45,20 @@ export async function PATCH(req, { params }) {
     return err('Validation failed', 422, { issues: parsed.error.issues });
   }
 
+  if (Object.keys(parsed.data).length === 0) {
+    return err('No fields to update', 400);
+  }
+
   const supabase = getSupabaseAdmin();
 
   const { data, error } = await supabase
     .from('concerts')
     .update(parsed.data)
-    .eq('id', params.id)
+    .eq('id', id)
     .select()
     .single();
 
-  if (error) {
-    return json(
-      { error: 'DB error', code: error.code ?? null, message: error.message ?? null, details: error.details ?? null },
-      500
-    );
-  }
+  if (error) return dbError(error);
 
   return json(data);
 }
@@ -70,6 +67,8 @@ export async function PATCH(req, { params }) {
 export async function DELETE(req, { params }) {
   const deny = allow(['DELETE'])(req);
   if (deny) return deny;
+
+  const { id } = await params;
 
   const ip = req.headers.get('x-forwarded-for') || 'local';
   const rl = rateLimit({ key: `gigs:DELETE:${ip}`, max: 20, windowMs: 10_000 });
@@ -80,14 +79,9 @@ export async function DELETE(req, { params }) {
   const { error } = await supabase
     .from('concerts')
     .delete()
-    .eq('id', params.id);
+    .eq('id', id);
 
-  if (error) {
-    return json(
-      { error: 'DB error', code: error.code ?? null, message: error.message ?? null, details: error.details ?? null },
-      500
-    );
-  }
+  if (error) return dbError(error);
 
   return new Response(null, { status: 204 });
 }
